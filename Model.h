@@ -15,18 +15,12 @@ Model also provides facilities for looking up objects given their name.
 Notice how only the Standard Library headers need to be included - reduced coupling!
 
 */
+#include "Agent.h"
+#include "Structure.h"
+#include "View.h"
+#include <set>
 
-/* 
-*** This skeleton file shows the required public interface for the class, which you may not modify. 
-If no protected members are shown, there must be none in your version. 
-If any protected or private members are shown here, then your class must also have them and use them as intended.
-You must delete this comment and all other comments that start with "***".
-*/
-
-/* 
-*** Here provide the appropriate declarations for a global variable named g_Model_ptr of type Model*
- - follow the Header File Guidelines. 
- */
+extern Model* g_Model_ptr;
  
 class Model {
 public:
@@ -75,9 +69,15 @@ public:
 	void notify_gone(const std::string& name);
 	
 private:
-	// *** declare an int member variable to store the simulated time
-
-
+    int time;
+    
+    struct Less_than_obj_ptr {
+        bool operator()(Sim_object* p1, Sim_object* p2);
+    };
+    
+    std::set<Agent*, Less_than_obj_ptr> agents;
+    std::set<Structure*, Less_than_obj_ptr> structures;
+    std::set<Sim_object*, Less_than_obj_ptr> objects;
 
 	// disallow copy/move construction or assignment
 	Model(const Model&) = delete;
