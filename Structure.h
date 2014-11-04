@@ -1,30 +1,32 @@
 /* A Structure is a Sim_object with a location and interface to derived types */
 
-/* 
-*** This skeleton file shows the required public interface for the class, which you may not modify. 
-If no protected members are shown, there must be none in your version. 
-If any protected or private members are shown here, then your class must also have them and use them as intended.
-You must delete this comment and all other comments that start with "***".
-*/
+#include <string>
+#include "Geometry.h"
+#include "Sim_object.h"
 
-public:
-	// *** provide a constructor and destructor
-	// *** first constructor parameter should be the name, specified as a string, the second should be a Point for the location.
-	
-	// *** Make this an abstract class by making the destructor pure virtual
-		
-	// *** declare and define here appropriately
-	Point get_location()
-
-	// *** declare and define the following functions as specified
-	void update()
-
-	// output information about the current state
-	void describe()
-
-	// ask model to notify views of current state
-    void broadcast_current_state()
+class Structure : public Sim_object {
     
-	// fat interface for derived types	
-	double withdraw(double amount_to_get);
-	void deposit(double amount_to_give);
+public:
+    //constructor takes name and location of structure
+    Structure(const std::string &name_, Point location);
+    //Destructor made void to enforce abstract class
+    virtual ~Structure();
+    //Returns the current location
+    Point get_location() { return cur_location; }
+    
+    //Per the spec, does nothing.
+    void update(){}
+    
+    // output information about the current state
+    virtual void describe() const;
+    
+    // ask model to notify views of current state
+    void broadcast_current_state();
+    
+    // fat interface for derived types
+    virtual double withdraw(double amount_to_get);
+    //does nothing:
+    virtual void deposit(double amount_to_give) {}
+private:
+    Point cur_location;
+};

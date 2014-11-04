@@ -3,7 +3,7 @@ It also stores the object's name, and has pure virtual accessor functions for
 the object's position and other information. */
 #include <string>
 
-class Point;//incomplete declaration
+class Point;//incomplete fwd declaration
 
 class Sim_object {
 public:

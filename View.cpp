@@ -13,6 +13,7 @@ const double default_origin_x_c = -10.0;
 const double default_origin_y_c = -10.0;
 const int min_map_size_c = 7;
 const int max_map_size_c = 30;
+const double lower_scale_bound_c = 0.0;
 
 //Constructs the View with the default values according to spec.
 View::View() : size(default_size_c), scale(default_scale_c),
@@ -33,6 +34,11 @@ void View::update_remove(const std::string &name)
 //draws the map as specified to stdout
 void View::draw()
 {
+    cout << "Display size: " <<
+        size << ", scale: " << scale << ", origin: " <<
+        origin << endl;
+    
+    //TODO: this
     
 }
 //clears the saved information
@@ -53,6 +59,19 @@ void View::set_size(int size_)
     size = size_;
 }
 
+//sets the scale to the given scale number
+//Throws an error if it is out of bounds.
+void View::set_scale(double scale_)
+{
+    if(scale_ <= lower_scale_bound_c) {
+        throw Error("New map scale must be positive!");
+    }
+    scale = scale_;
+}
+
+void View::set_origin(Point origin_) {
+    origin = origin_;
+}
 
 // Calculate the cell subscripts corresponding to the supplied location parameter, 
 // using the current size, scale, and origin of the display. 

@@ -12,7 +12,7 @@
 class Structure;
 
 
-class Agent: Sim_object, Moving_object {
+class Agent: public Sim_object, Moving_object {
 public:
     
     virtual ~Agent() override;
@@ -60,13 +60,15 @@ public:
     virtual void start_attacking(Agent *);
     
 protected:
-    // *** Make this an abstract class by making the constructor protected to prevent direct creation.
-    // *** create with initial health is 5, speed is 5, state is Alive
-    Agent(const std::string& name_, Point location_);
+    
+    Agent(const std::string& name_, const Point& location_);
     
     // calculate loss of health due to hit.
     // if health decreases to zero or negative, Agent state becomes Dying, and any movement is stopped.
     void lose_health(int attack_strength);
+    //Outputs the given message to stdout, in form of "name: msg"
+    //with a new line.
+    void state_Message(const std::string& msg) const;
     
 private:
     
@@ -81,9 +83,5 @@ private:
         DISAPPEARING
     };
     Agent_state_e state;
-    //Outputs the given message to stdout, in form of "name: msg"
-    //with a new line.
-    void state_Message(const std::string& msg) const;
-    //TODO:possibly move to Utility
     void update_Movement();
 };

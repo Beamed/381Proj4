@@ -10,7 +10,7 @@ using std::string;
 const int default_health_c = 5;
 const int default_speed_c = 5;
 
-Agent::Agent(const std::string& name_, Point location_):
+Agent::Agent(const std::string& name_, const Point &location_):
 Sim_object(name_), Moving_object(location_, default_speed_c),
 health(default_health_c), speed(default_speed_c),
 state(Agent_state_e::ALIVE)

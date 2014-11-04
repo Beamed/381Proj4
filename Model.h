@@ -15,12 +15,16 @@ Model also provides facilities for looking up objects given their name.
 Notice how only the Standard Library headers need to be included - reduced coupling!
 
 */
-#include "Agent.h"
-#include "Structure.h"
-#include "View.h"
 #include <set>
 
-extern Model* g_Model_ptr;
+
+class Model;//forward declare for ptrs:
+class Agent;
+class Structure;
+class Sim_object;//forward declare so we don't include into header
+class View;
+
+extern Model* g_Model_ptr;//the -one- Model we need.
  
 class Model {
 public:
