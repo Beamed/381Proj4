@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C147F23D1A0D406800CCCFAB /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C147F23C1A0D406800CCCFAB /* Controller.cpp */; };
+		C147F2401A0D778600CCCFAB /* Agent_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C147F23E1A0D778600CCCFAB /* Agent_factory.cpp */; };
+		C147F2411A0D778600CCCFAB /* Structure_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C147F23F1A0D778600CCCFAB /* Structure_factory.cpp */; };
 		C1F1196D1A000B57008BBDD8 /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1F119581A000B57008BBDD8 /* Geometry.cpp */; };
 		C1F1196E1A000B57008BBDD8 /* Moving_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1F1195B1A000B57008BBDD8 /* Moving_object.cpp */; };
 		C1F1196F1A000B57008BBDD8 /* p4_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1F1195D1A000B57008BBDD8 /* p4_main.cpp */; };
@@ -35,6 +38,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C147F23C1A0D406800CCCFAB /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Controller.cpp; sourceTree = SOURCE_ROOT; };
+		C147F23E1A0D778600CCCFAB /* Agent_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Agent_factory.cpp; sourceTree = SOURCE_ROOT; };
+		C147F23F1A0D778600CCCFAB /* Structure_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Structure_factory.cpp; sourceTree = SOURCE_ROOT; };
 		C1F1194D1A00050B008BBDD8 /* Project4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Project4; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1F119571A000B57008BBDD8 /* Agent_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent_factory.h; sourceTree = SOURCE_ROOT; };
 		C1F119581A000B57008BBDD8 /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Geometry.cpp; sourceTree = SOURCE_ROOT; };
@@ -44,7 +50,7 @@
 		C1F1195C1A000B57008BBDD8 /* Moving_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moving_object.h; sourceTree = SOURCE_ROOT; };
 		C1F1195D1A000B57008BBDD8 /* p4_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = p4_main.cpp; sourceTree = SOURCE_ROOT; };
 		C1F1195E1A000B57008BBDD8 /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = SOURCE_ROOT; };
-		C1F1195F1A000B57008BBDD8 /* skeleton_Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skeleton_Controller.h; sourceTree = SOURCE_ROOT; };
+		C1F1195F1A000B57008BBDD8 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = SOURCE_ROOT; };
 		C1F119601A000B57008BBDD8 /* Farm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Farm.h; sourceTree = SOURCE_ROOT; };
 		C1F119611A000B57008BBDD8 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = SOURCE_ROOT; };
 		C1F119621A000B57008BBDD8 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = SOURCE_ROOT; };
@@ -100,14 +106,16 @@
 			children = (
 				C1F1195E1A000B57008BBDD8 /* Agent.h */,
 				C1F119741A002C5D008BBDD8 /* Agent.cpp */,
+				C147F23E1A0D778600CCCFAB /* Agent_factory.cpp */,
 				C1F119571A000B57008BBDD8 /* Agent_factory.h */,
+				C147F23C1A0D406800CCCFAB /* Controller.cpp */,
+				C1F1195F1A000B57008BBDD8 /* Controller.h */,
 				C1F119601A000B57008BBDD8 /* Farm.h */,
 				C1F1197A1A0862B4008BBDD8 /* Farm.cpp */,
 				C1F119581A000B57008BBDD8 /* Geometry.cpp */,
 				C1F119591A000B57008BBDD8 /* Geometry.h */,
 				C1F1195B1A000B57008BBDD8 /* Moving_object.cpp */,
 				C1F1195C1A000B57008BBDD8 /* Moving_object.h */,
-				C1F1195F1A000B57008BBDD8 /* skeleton_Controller.h */,
 				C1F1195A1A000B57008BBDD8 /* Makefile.txt */,
 				C1F119611A000B57008BBDD8 /* Model.cpp */,
 				C1F119621A000B57008BBDD8 /* Model.h */,
@@ -122,6 +130,7 @@
 				C1F119661A000B57008BBDD8 /* Structure.h */,
 				C1F119761A082913008BBDD8 /* Structure.cpp */,
 				C1F1196C1A000B57008BBDD8 /* Structure_factory.h */,
+				C147F23F1A0D778600CCCFAB /* Structure_factory.cpp */,
 				C1F119AA1A0C5F22008BBDD8 /* Town_Hall.cpp */,
 				C1F119671A000B57008BBDD8 /* Town_Hall.h */,
 				C1F119681A000B57008BBDD8 /* Utility.h */,
@@ -193,6 +202,7 @@
 				C1F1196E1A000B57008BBDD8 /* Moving_object.cpp in Sources */,
 				C1F119731A002601008BBDD8 /* Sim_object.cpp in Sources */,
 				C1F1196D1A000B57008BBDD8 /* Geometry.cpp in Sources */,
+				C147F23D1A0D406800CCCFAB /* Controller.cpp in Sources */,
 				C1F119AD1A0C62AF008BBDD8 /* Peasant.cpp in Sources */,
 				C1F119751A002C5D008BBDD8 /* Agent.cpp in Sources */,
 				C1F1196F1A000B57008BBDD8 /* p4_main.cpp in Sources */,
@@ -201,6 +211,8 @@
 				C1F119781A082913008BBDD8 /* Structure.cpp in Sources */,
 				C1F119AB1A0C5F22008BBDD8 /* Town_Hall.cpp in Sources */,
 				C1F1197B1A0862B4008BBDD8 /* Farm.cpp in Sources */,
+				C147F2411A0D778600CCCFAB /* Structure_factory.cpp in Sources */,
+				C147F2401A0D778600CCCFAB /* Agent_factory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

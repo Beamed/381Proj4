@@ -19,13 +19,14 @@ Notice how only the Standard Library headers need to be included - reduced coupl
 #define MODEL_H
 
 #include <set>
-
+#include <list>
 
 class Model;//forward declare for ptrs:
 class Agent;
 class Structure;
 class Sim_object;//forward declare so we don't include into header
 class View;
+class Point;
 
 extern Model* g_Model_ptr;//the -one- Model we need.
  
@@ -41,20 +42,21 @@ public:
 	int get_time() {return time;}
 
 	// is name already in use for either agent or structure?
-    // either the identical name, or identical in first two characters counts as in-use
+    // return true if the name matches the name of an existing
+    //agent or structure
 	bool is_name_in_use(const std::string& name) const;
 
 	// is there a structure with this name?
 	bool is_structure_present(const std::string& name) const;
 	// add a new structure; assumes none with the same name
-	void add_structure(Structure*);
+	void add_structure(Structure* structure);
 	// will throw Error("Structure not found!") if no structure of that name
 	Structure* get_structure_ptr(const std::string& name) const;
 
 	// is there an agent with this name?
 	bool is_agent_present(const std::string& name) const;
 	// add a new agent; assumes none with the same name
-	void add_agent(Agent*);
+	void add_agent(Agent* agent);
 	// will throw Error("Agent not found!") if no agent of that name
 	Agent* get_agent_ptr(const std::string& name) const;
 	
@@ -76,15 +78,22 @@ public:
 	void notify_gone(const std::string& name);
 	
 private:
-    int time;
     
+    
+    //fcn obj returns true if p1's name is less than p2's name
     struct Less_than_obj_ptr {
         bool operator()(Sim_object* p1, Sim_object* p2);
+    };
+    //fcn obj which returns true if p's name is equal to name
+    struct Equal_to_obj_ptr_str {
+        bool operator()(Sim_object* p, const std::string& name);
     };
     
     std::set<Agent*, Less_than_obj_ptr> agents;
     std::set<Structure*, Less_than_obj_ptr> structures;
     std::set<Sim_object*, Less_than_obj_ptr> objects;
+    int time;
+    std::list<View*> views;
 
 	// disallow copy/move construction or assignment
 	Model(const Model&) = delete;

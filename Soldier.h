@@ -9,7 +9,7 @@ start attacking its attacker.
 
 #include "Agent.h"
 
-class Soldier final: Agent {
+class Soldier : public Agent {
 
 public:
 	

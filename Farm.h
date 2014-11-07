@@ -8,7 +8,7 @@ Food can be withdrawn, but no provision is made for depositing any.
 
 #include "Structure.h"
 
-class Farm final: Structure {
+class Farm : public Structure {
 public:
 	Farm (const std::string& name_, Point location_);
 	~Farm();

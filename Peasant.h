@@ -13,7 +13,7 @@ If commanded to move_to somewhere, it stops working, and goes there.
 
 class Structure;
 
-class Peasant final: Agent {
+class Peasant : public Agent {
 
 public:
     

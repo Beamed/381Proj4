@@ -9,7 +9,7 @@ but does no updating.
 #include "Structure.h"
 #include "Geometry.h"
 
-class Town_Hall final: Structure{
+class Town_Hall : public Structure{
 
 
 public:
