@@ -18,6 +18,10 @@ with the appropriate functions. Since the view "remembers" the previously update
 information, immediately calling the draw function will print out a map showing the previous objects
 using the new settings.
 */
+
+#ifndef VIEW_H
+#define VIEW_H
+
 #include <string>
 #include <map>
 #include "Geometry.h"
@@ -62,3 +66,5 @@ private:
     Point origin;
     std::map<std::string, Point> objects;
 };
+
+#endif

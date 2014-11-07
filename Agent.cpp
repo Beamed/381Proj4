@@ -10,7 +10,7 @@ using std::string;
 const int default_health_c = 5;
 const int default_speed_c = 5;
 
-Agent::Agent(const std::string& name_, const Point &location_):
+Agent::Agent(const std::string& name_, Point location_):
 Sim_object(name_), Moving_object(location_, default_speed_c),
 health(default_health_c), speed(default_speed_c),
 state(Agent_state_e::ALIVE)
@@ -36,22 +36,17 @@ bool Agent::is_moving() const
 void Agent::move_to(Point destination_)
 {
     if(destination_ == get_current_location()) {
-        state_Message("I'm already there");
+        cout << get_name() << ": I'm already there" << endl;
         return;
     }
-    state_Message("I'm on the way");
+    cout << get_name() <<  ": I'm on the way" << endl;
     start_moving(destination_);
 }
 
 void Agent::stop()
 {
-    state_Message("I'm stopped");
+    cout << get_name() << ": I'm stopped" << endl;
     stop_moving();
-}
-
-void Agent::state_Message(const string& msg) const
-{
-    cout << get_name() << ": " << msg;
 }
 
 void Agent::take_hit(int attack_strength, Agent *attacker_ptr)
@@ -66,10 +61,10 @@ void Agent::lose_health(int attack_strength)
     if(health <= 0) {
         state = Agent_state_e::DYING;
         stop_moving();
-        state_Message("Arrggh!");
+        cout << get_name() << ": Arrggh!" << endl;
         return;
     }
-    state_Message("Ouch!");
+    cout << get_name() << ": Ouch!" << endl;
 }
 
 void Agent::update()
@@ -94,10 +89,10 @@ void Agent::update()
 void Agent::update_Movement()
 {
     if(update_location()) {
-        state_Message("I'm there!");
+        cout << get_name() << ": I'm there!" << endl;
         return;
     }
-    state_Message("step...");
+    cout << get_name() << ": step..." << endl;
     //TODO: notify Model to tell Views it's location has changed
 }
 

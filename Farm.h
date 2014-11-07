@@ -3,6 +3,8 @@ A Farm is a Structure that when updated, increments the amount of food on hand
 by the production rate amount.
 Food can be withdrawn, but no provision is made for depositing any.
 */
+#ifndef FARM_H
+#define FARM_H
 
 #include "Structure.h"
 
@@ -25,3 +27,4 @@ public:
 private:
     double cur_amount;
 };
+#endif

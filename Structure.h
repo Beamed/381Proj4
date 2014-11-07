@@ -1,5 +1,8 @@
 /* A Structure is a Sim_object with a location and interface to derived types */
 
+#ifndef STRUCTURE_H
+#define STRUCTURE_H
+
 #include <string>
 #include "Geometry.h"
 #include "Sim_object.h"
@@ -9,8 +12,8 @@ class Structure : public Sim_object {
 public:
     //constructor takes name and location of structure
     Structure(const std::string &name_, Point location);
-    //Destructor made void to enforce abstract class
-    virtual ~Structure();
+    //Destructor makes pure virtual
+    virtual ~Structure() = 0;
     //Returns the current location
     Point get_location() { return cur_location; }
     
@@ -30,3 +33,5 @@ public:
 private:
     Point cur_location;
 };
+
+#endif

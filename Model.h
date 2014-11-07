@@ -15,6 +15,9 @@ Model also provides facilities for looking up objects given their name.
 Notice how only the Standard Library headers need to be included - reduced coupling!
 
 */
+#ifndef MODEL_H
+#define MODEL_H
+
 #include <set>
 
 
@@ -89,3 +92,4 @@ private:
 	Model(Model&&) = delete;
 	Model& operator= (Model&&) = delete;
 };
+#endif

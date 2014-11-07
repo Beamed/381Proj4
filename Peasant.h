@@ -6,15 +6,17 @@ and tries again on the next update.
 If commanded to move_to somewhere, it stops working, and goes there.
 */
 
-/* 
-*** This skeleton file shows the required public interface for the class, which you may not modify. 
-If no protected members are shown, there must be none in your version. 
-If any protected or private members are shown here, then your class must also have them and use them as intended.
-You must delete this comment and all other comments that start with "***".
-*/
+#ifndef PEASANT_H
+#define PEASANT_H
+
+#include "Agent.h"
+
+class Structure;
+
+class Peasant final: Agent {
 
 public:
-	// *** define these in .cpp; initialize with zero amount being carried
+    
 	Peasant(const std::string& name_, Point location_);
 
 	~Peasant();
@@ -34,3 +36,25 @@ public:
 
 	// output information about the current state
 	void describe() const override;
+    
+private:
+    enum class Peasant_state_e {
+        NOT_WORKING,
+        DEPOSITING,
+        INBOUND,
+        COLLECTING,
+        OUTBOUND
+    };
+    Peasant_state_e working_state;
+    double food;
+    Structure* food_src;
+    Structure* food_dest;
+    //Checks if current state is working;
+    //if it is, outputs "I'm stopping work",
+    //and calls end_work
+    void stop_work();
+    //sets food src/dest to nullptr, and sets state to not working.
+    void end_work();
+};
+
+#endif

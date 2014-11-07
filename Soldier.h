@@ -4,6 +4,9 @@ to start attacking another Agent and will continue the attack as long as
 it is alive and the target is alive and in range. If attacked, the Soldier will
 start attacking its attacker.
 */
+#ifndef SOLDIER_H
+#define SOLDIER_H
+
 #include "Agent.h"
 
 class Soldier final: Agent {
@@ -35,4 +38,15 @@ private:
     double range;
     bool is_attacking;
     Agent* target;
+    
+    //returns true if the target_ptr is in range
+    //false otherwise
+    bool in_range(Agent* target_ptr) const;
+    //Sets variables to relevant values if an attack is stopped
+    void stop_attacking();
+    //Sets the target to be the target, moves to state is_attacking
+    //and announces the attack
+    void attack_target(Agent* target_ptr);
 };
+
+#endif

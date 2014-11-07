@@ -1,6 +1,9 @@
 /* The Sim_object class provides the interface for all of simulation objects. 
 It also stores the object's name, and has pure virtual accessor functions for 
 the object's position and other information. */
+#ifndef SIM_OBJECT_H
+#define SIM_OBJECT_H
+
 #include <string>
 
 class Point;//incomplete fwd declaration
@@ -25,3 +28,4 @@ private:
 	std::string name;
 };
 
+#endif
