@@ -18,7 +18,6 @@ Structure(name_, location_), cur_amount(default_starting_food_c)
 Farm::~Farm()
 {
     cout << "Farm " << get_name() << " destructed" << endl;
-    //TODO: see if this needs update
 }
 //withdraws either the amount requested, or the closest amount
 //we can

@@ -13,12 +13,12 @@ Structure* create_structure(const string& name, const string& type,
                             Point location)
 {
     if(type == farm_name_c) {
-        return new Farm(name, location);
+        return new Farm{name, location};
     }
     else if(type == town_hall_name_c) {
-        return new Town_Hall(name, location);
+        return new Town_Hall{name, location};
     }
     else {
-        throw Error("Trying to create structure of unknown type!");
+        throw Error{"Trying to create structure of unknown type!"};
     }
 }

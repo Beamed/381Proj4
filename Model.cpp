@@ -6,16 +6,17 @@
 #include "View.h"
 #include "Agent.h"
 #include "Structure.h"
-#include <algorithm>
+#include "Utility.h"
 #include <functional>
+#include <algorithm>
+#include <utility>
 
-using std::for_each;
-using std::any_of;
 using std::string;
+using std::for_each;
+using std::mem_fn;
+using std::map;
 using std::bind;
 using namespace std::placeholders;
-
-Model* g_Model_ptr = new Model();
 
 const int default_starting_time_c = 0;
 //Initializes the initial objects, sets time to start at 0
@@ -32,47 +33,99 @@ Model::Model() : time(default_starting_time_c)
     add_agent(create_agent("Zug", "Soldier", Point(20., 30.)));
     add_agent(create_agent("Bug", "Soldier", Point(15., 20.)));
 }
-
+//Adds the structure to the map of structures; assumes none with same name
 void Model::add_structure(Structure * structure)
 {
     objects.insert(structure);
-    structures.insert(structure);
+    structures.insert(make_pair(structure->get_name(), structure));
 }
 
-//Adds the agent to the set of agents; assumes none with same name
+//Adds the agent to the map of agents; assumes none with same name
 void Model::add_agent(Agent * agent)
 {
     objects.insert(agent);
-    agents.insert(agent);
+    agents.insert(make_pair(agent->get_name(), agent));
+}
+
+//Returns the structure pointer with the requested name.
+//If not found, will throw Error("Structure not found!")
+Structure* Model::get_structure_ptr(const string& name) const
+{
+    auto struct_ptr = structures.find(name);
+    if(struct_ptr == structures.end()) {
+        throw Error("Structure not found!");
+    }
+    return struct_ptr->second;
 }
 
 //Destroys all the objects
 Model::~Model()
-{
-    for_each(objects.begin(), objects.end(), [] (Sim_object* obj) {
-        delete obj;
+{//delete each object pointer, let the containers fall out of scope:
+    for_each(objects.begin(), objects.end(), [] (Sim_object* p) {
+        delete p;
     });
 }
 //Returns true if any object has the name provided
 bool Model::is_name_in_use(const string &name) const
+{//why redo code? :
+    return is_agent_present(name) || is_structure_present(name);
+}
+//Returns true if the structure with the name is present
+bool Model::is_structure_present(const string &name) const
 {
-    return any_of(objects.begin(), objects.end(),
-                  bind(Equal_to_obj_ptr_str(), _1, name));
+    return structures.find(name) != structures.end();
+}
+//Returns true if the agent with the name is present
+bool Model::is_agent_present(const string &name) const
+{
+    return agents.find(name) != agents.end();
+}
+//Returns an agent with the given name, throws an error if not found.
+Agent* Model::get_agent_ptr(const string &name) const
+{
+    auto agent_iter = agents.find(name);
+    if(agent_iter == agents.end()) {
+        throw Error("Agent not found!");
+    }
+    return agent_iter->second;
+}
+//calls the describe function for each of the objects
+void Model::describe() const
+{
+    for_each(objects.begin(), objects.end(), mem_fn(&Sim_object::describe));
+}
+//calls the update function for each of the objects
+//increments the time
+void Model::update()
+{
+    time++;
+    for_each(objects.begin(), objects.end(), mem_fn(&Sim_object::update));
+}
+//compares the two objects lexicographically by calling get_name
+bool Model::Less_than_obj_ptr::operator()(Sim_object *p1,
+                                          Sim_object *p2)
+{
+    return p1->get_name() < p2->get_name();
 }
 
-bool Model::is_structure_present(const std::string &name) const
+//Inserts the view into the list of views
+void Model::attach(View *view)
 {
-    return any_of(structures.begin(), structures.end(),
-                  bind(Equal_to_obj_ptr_str(), _1, name));
+    views.push_back(view);
 }
-
-//Just calls the get_name fcn to compare names of each pointer
-bool Model::Less_than_obj_ptr::operator()(Sim_object *p1, Sim_object *p2)
+//Removes the view from the list of views.
+void Model::detach(View *view)
 {
-    return (p1->get_name() < p2->get_name());
+    views.remove(view);
 }
-//Returns true if p's name is equal to the name provided
-bool Model::Equal_to_obj_ptr_str::operator()(Sim_object* p, const string& name)
+//calls each view's update_location function to update the location of named obj
+void Model::notify_location(const string &name, Point location)
 {
-    return p->get_name()==name;
+    for_each(views.begin(), views.end(),
+             bind(&View::update_location, _1, name, location));
+}
+//calls each view's update_remove function to remove the named obj
+void Model::notify_gone(const std::string &name)
+{
+    for_each(views.begin(), views.end(), bind(&View::update_remove, _1, name));
 }

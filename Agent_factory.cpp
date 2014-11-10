@@ -13,12 +13,12 @@ Agent* create_agent(const string& name, const string& type,
                     Point location)
 {
     if(type == soldier_name_c) {
-        return new Soldier(name, location);
+        return new Soldier{name, location};
     }
     else if(type == peasant_name_c) {
-        return new Peasant(name, location);
+        return new Peasant{name, location};
     }
     else {
-        throw Error("Trying to create agent of unknown type!");
+        throw Error{"Trying to create agent of unknown type!"};
     }
 }

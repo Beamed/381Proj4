@@ -18,6 +18,7 @@ Notice how only the Standard Library headers need to be included - reduced coupl
 #ifndef MODEL_H
 #define MODEL_H
 
+#include <map>
 #include <set>
 #include <list>
 
@@ -68,29 +69,23 @@ public:
 	/* View services */
 	// Attaching a View adds it to the container and causes it to be updated
     // with all current objects'location (or other state information.
-	void attach(View*);
+	void attach(View* view);
 	// Detach the View by discarding the supplied pointer from the container of Views
     // - no updates sent to it thereafter.
-	void detach(View*);
+	void detach(View* view);
     // notify the views about an object's location
 	void notify_location(const std::string& name, Point location);
 	// notify the views that an object is now gone
 	void notify_gone(const std::string& name);
 	
 private:
-    
-    
-    //fcn obj returns true if p1's name is less than p2's name
+    //function object to ensure objects are stored in correct order
     struct Less_than_obj_ptr {
-        bool operator()(Sim_object* p1, Sim_object* p2);
-    };
-    //fcn obj which returns true if p's name is equal to name
-    struct Equal_to_obj_ptr_str {
-        bool operator()(Sim_object* p, const std::string& name);
+        bool operator() (Sim_object* p1, Sim_object* p2);
     };
     
-    std::set<Agent*, Less_than_obj_ptr> agents;
-    std::set<Structure*, Less_than_obj_ptr> structures;
+    std::map<std::string, Agent*> agents;
+    std::map<std::string, Structure*> structures;
     std::set<Sim_object*, Less_than_obj_ptr> objects;
     int time;
     std::list<View*> views;
