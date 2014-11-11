@@ -26,30 +26,41 @@ const int default_starting_time_c = 0;
 Model::Model() : time(default_starting_time_c)
 {
     //initialize initial objects:
-    add_structure(create_structure("Rivendale", "Farm", Point(10., 10.)));
-    add_structure(create_structure("Sunnybrook", "Farm", Point(0., 30.)));
-    add_structure(create_structure("Shire", "Town_Hall", Point(20., 20.)));
-    add_structure(create_structure("Paduca", "Town_Hall", Point(30., 30.)));
+    insert_structure(create_structure("Rivendale", "Farm", Point(10., 10.)));
+    insert_structure(create_structure("Sunnybrook", "Farm", Point(0., 30.)));
+    insert_structure(create_structure("Shire", "Town_Hall", Point(20., 20.)));
+    insert_structure(create_structure("Paduca", "Town_Hall", Point(30., 30.)));
 	
-    add_agent(create_agent("Pippin", "Peasant", Point(5., 10.)));
-    add_agent(create_agent("Merry", "Peasant", Point(0., 25.)));
-    add_agent(create_agent("Zug", "Soldier", Point(20., 30.)));
-    add_agent(create_agent("Bug", "Soldier", Point(15., 20.)));
+    insert_agent(create_agent("Pippin", "Peasant", Point(5., 10.)));
+    insert_agent(create_agent("Merry", "Peasant", Point(0., 25.)));
+    insert_agent(create_agent("Zug", "Soldier", Point(20., 30.)));
+    insert_agent(create_agent("Bug", "Soldier", Point(15., 20.)));
+}
+//Inserts structure and has it broadcast
+void Model::add_structure(Structure * structure)
+{
+    insert_structure(structure);
+    structure->broadcast_current_state();
+}
+
+
+void Model::add_agent(Agent * agent)
+{
+    insert_agent(agent);
+    agent->broadcast_current_state();
 }
 //Adds the structure to the map of structures; assumes none with same name
-void Model::add_structure(Structure * structure)
+void Model::insert_structure(Structure* structure)
 {
     objects.insert(structure);
     structures.insert(make_pair(structure->get_name(), structure));
-    notify_location(structure->get_name(), structure->get_location());
 }
 
 //Adds the agent to the map of agents; assumes none with same name
-void Model::add_agent(Agent * agent)
+void Model::insert_agent(Agent* agent)
 {
     objects.insert(agent);
     agents.insert(make_pair(agent->get_name(), agent));
-    notify_location(agent->get_name(), agent->get_location());
 }
 
 //Returns the structure pointer with the requested name.

@@ -110,16 +110,19 @@ void Agent::update_Movement()
 void Agent::describe() const
 {
     cout << get_name() << " at " << get_current_location() << endl;
-    cout << "   Health is " << health << endl;
-    if(is_moving()) {
-        auto old_settings = cout.precision();
-        cout << std::fixed << std::setprecision(default_precision_c);
-        cout << "   Moving at speed " << speed << " to " <<
+    if(is_alive()) {
+        cout << "   Health is " << health << endl;
+        if(is_moving()) {
+            auto old_settings = cout.precision();
+            cout << std::fixed << std::setprecision(default_precision_c);
+            cout << "   Moving at speed " << speed << " to " <<
             get_current_destination() << endl;
-        cout.precision(old_settings);//save and restore old settings
-    }
-    else {
-        cout << "   Stopped" << endl;
+            cout.precision(old_settings);//save and restore old settings
+        }
+        else  {
+            cout << "   Stopped" << endl;
+        }
+        return;//no need to check dying state if is alive
     }
     switch(state) {
         case Agent_state_e::DYING:

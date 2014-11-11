@@ -89,6 +89,12 @@ private:
     std::set<Sim_object*, Less_than_obj_ptr> objects;
     int time;
     std::list<View*> views;
+    
+    //inserts a structure into the relevant containers
+    void insert_structure(Structure* structure);
+    
+    //inserts an agent into the relevant containers
+    void insert_agent(Agent* agent);
 
 	// disallow copy/move construction or assignment
 	Model(const Model&) = delete;

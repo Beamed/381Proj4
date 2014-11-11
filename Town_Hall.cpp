@@ -4,7 +4,6 @@
 const double default_food_c = 0.0;
 const double tax_on_food_c = 0.1;
 const double min_food_withdrawal_c = 1.0;
-const double default_food_withdrawal_c = 0.0;
 
 using std::string;
 using std::cout;
@@ -31,14 +30,13 @@ void Town_Hall::deposit(double deposit_amount)
 //if < min_food_withdrawal_c is left, return nothing
 double Town_Hall::withdraw(double amount_to_obtain)
 {
-    food -= food * tax_on_food_c;
-    if(amount_to_obtain > food) {
-        double cur_food = food;
-        food = default_food_c;
-        if(cur_food < min_food_withdrawal_c) {
-            return default_food_withdrawal_c;
-        }
-        return cur_food;
+    double avail_amt = food - (food * tax_on_food_c);//get food - tax 
+    if(avail_amt < min_food_withdrawal_c) {
+        avail_amt = default_food_c;
+    }
+    if(amount_to_obtain > avail_amt) {
+        food -= avail_amt;
+        return avail_amt;
     }
     food -= amount_to_obtain;
     return amount_to_obtain;
