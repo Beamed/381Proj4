@@ -18,6 +18,9 @@ using std::map;
 using std::bind;
 using namespace std::placeholders;
 
+//initialize to nullptr:
+Model* g_Model_ptr = nullptr;
+
 const int default_starting_time_c = 0;
 //Initializes the initial objects, sets time to start at 0
 Model::Model() : time(default_starting_time_c)
@@ -38,6 +41,7 @@ void Model::add_structure(Structure * structure)
 {
     objects.insert(structure);
     structures.insert(make_pair(structure->get_name(), structure));
+    notify_location(structure->get_name(), structure->get_location());
 }
 
 //Adds the agent to the map of agents; assumes none with same name
@@ -45,6 +49,7 @@ void Model::add_agent(Agent * agent)
 {
     objects.insert(agent);
     agents.insert(make_pair(agent->get_name(), agent));
+    notify_location(agent->get_name(), agent->get_location());
 }
 
 //Returns the structure pointer with the requested name.
@@ -112,6 +117,9 @@ bool Model::Less_than_obj_ptr::operator()(Sim_object *p1,
 void Model::attach(View *view)
 {
     views.push_back(view);
+    for_each(objects.begin(), objects.end(),
+             mem_fn(&Sim_object::broadcast_current_state));
+    //this way we ensure the view is "up to date"
 }
 //Removes the view from the list of views.
 void Model::detach(View *view)
@@ -121,11 +129,13 @@ void Model::detach(View *view)
 //calls each view's update_location function to update the location of named obj
 void Model::notify_location(const string &name, Point location)
 {
+    if(views.empty()) return;//do nothing if no views to update
     for_each(views.begin(), views.end(),
              bind(&View::update_location, _1, name, location));
 }
 //calls each view's update_remove function to remove the named obj
 void Model::notify_gone(const std::string &name)
 {
+    if(views.empty()) return;//do nothing if no views to update
     for_each(views.begin(), views.end(), bind(&View::update_remove, _1, name));
 }

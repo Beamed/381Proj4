@@ -9,6 +9,9 @@ using std::string;
 const string farm_name_c = "Farm";
 const string town_hall_name_c = "Town_Hall";
 
+//Creates a structure as requested by comparing the type to the currently
+//known type names, and calling the relevant constructor.
+//Throws an error if it can't recognize the type. 
 Structure* create_structure(const string& name, const string& type,
                             Point location)
 {

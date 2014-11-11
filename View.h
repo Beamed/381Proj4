@@ -65,6 +65,10 @@ private:
     double scale;
     Point origin;
     std::map<std::string, Point> objects;
+    
+    //Returns the label that "should" be printed,
+    //according to the equation given by spec.
+    double get_axis_label(int coord, int origin_mod);
 };
 
 #endif

@@ -60,7 +60,8 @@ void View::draw()
         int x, y;//x and y location of object
         if(get_subscripts(x, y, object.second)) {
             if(map[y][x] == empty_tile_c)
-                map[y][x] = object.first.substr(num_chars_per_tile_c);
+                map[y][x] = object.first.substr(0, num_chars_per_tile_c);
+            //0 as 0 is the start of the string. 
             else
                 map[y][x] = multiple_objs_in_tile_c;
         }
@@ -68,40 +69,57 @@ void View::draw()
             if(!first_outside) {
                 cout << ", ";
             }
-            cout << object.second;
+            cout << object.first;//output their name
             first_outside = false;//none of the others will be first outside
             //if any others
         }
     }
+    if(!first_outside) {//if anyone was outside the map
+        cout << " outside the map" << endl;//notify user & end this line.
+    }
     //now that we have built our vector, we are safe to output:
     for(int y = 0; y < size; y++) {
-        int map_y = (size - y) * scale;//to calculate if we need to print this
-        if(map_y % axis_print_frequency_c == 0) {
+        int axis_count = size - y - 1;
+        //since we're printing in opposite order, invert index(size - y)
+        //and account for our y being off by one. 
+        if(axis_count % axis_print_frequency_c == 0) {
             auto old_settings = cout.precision();//save old settings
             cout << std::fixed << std::setprecision(0);
-            double real_y = ((size - y) * scale) + origin.y;
-            cout << setw(4) << real_y << " ";
+            //+1 to offset our y being "off by one":
+            cout << setw(4) << get_axis_label(size - y - 1, origin.y) << " ";
+            //why size - y - 1? since we're printing in the opposite order,
+            //we need to "invert" the index - and account for starting from 0,
+            //not 1.
             cout.precision(old_settings);//restore old settings
         }
         else {
             cout << "     ";
         }
-        for(const vector<string>& line : map) {
-            ostream_iterator<string> out_iter(cout);
-            copy(line.begin(), line.end(), out_iter);
-        }
+        const vector<string>& line = map[size - y - 1];
+        //why size-y? remember: we're printing the opposite of the internal
+        //representation, so we need to account for that. -1 to account for
+        //y being "off by one" from the real value.
+        ostream_iterator<string> out_iter(cout);
+        copy(line.begin(), line.end(), out_iter);
+        cout << endl;//new line after every individual line.
     }//we have now printed each row, now to print the x axis
     for(int x = 0; x < size; x++) {
-        int map_x = (size - x) * scale;//to determine if we print here:
-        if(map_x % axis_print_frequency_c == 0) {
+        if(x%axis_print_frequency_c == 0) {
             auto old_settings = cout.precision();
             cout << std::fixed << std::setprecision(0);
-            cout << "  " << setw(4) << ((size - x) * scale) + origin.x;
+            cout << "  " << setw(4) << get_axis_label(x, origin.x);
             cout.precision(old_settings);
         }
     }
     cout << endl;//phew; done!
 }
+//Performs the equation which returns the expected value to be printed
+//as an axis label.
+double View::get_axis_label(int coord, int origin_mod)
+{
+    return coord * scale + origin_mod;
+}
+
 //clears the saved information
 void View::clear()
 {

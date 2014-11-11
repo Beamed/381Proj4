@@ -39,7 +39,8 @@ void Farm::update()
     cur_amount += default_production_c;
     cout << "Farm " << get_name() << " now has " << cur_amount << endl;
 }
-
+//Simply announces it's a farm, calls the structure describe,
+//and outputs the current amount of food available.
 void Farm::describe() const
 {
     cout << "Farm ";

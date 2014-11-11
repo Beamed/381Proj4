@@ -20,9 +20,9 @@ public:
 	// ask model to notify views of current state
     virtual void broadcast_current_state() {}
     
-    virtual Point get_location() const;
-    virtual void describe() const;
-    virtual void update();
+    virtual Point get_location() const = 0;
+    virtual void describe() const {}
+    virtual void update() {}
 
 private:
 	std::string name;

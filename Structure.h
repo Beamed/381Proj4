@@ -15,7 +15,7 @@ public:
     //Destructor makes pure virtual
     virtual ~Structure() = 0;
     //Returns the current location
-    Point get_location() { return cur_location; }
+    virtual Point get_location() const { return cur_location; }
     
     //Per the spec, does nothing.
     void update(){}
