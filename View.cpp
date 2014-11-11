@@ -115,7 +115,7 @@ void View::draw()
 }
 //Performs the equation which returns the expected value to be printed
 //as an axis label.
-double View::get_axis_label(int coord, int origin_mod)
+double View::get_axis_label(int coord, double origin_mod)
 {
     return coord * scale + origin_mod;
 }

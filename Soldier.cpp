@@ -13,8 +13,8 @@ using std::endl;
 //Constructs a soldier by calling the Agent base ctor,
 //and then adding the defaults to new member vars
 Soldier::Soldier(const string& name_, Point location) :
-Agent(name_, location), is_attacking(false), target(nullptr),
-strength(default_strength_c), range(default_range_c)
+Agent(name_, location), is_attacking(false), strength(default_strength_c),
+range(default_range_c), target(nullptr)
 {
     cout << "Soldier " << name_ << " constructed" << endl;
 }

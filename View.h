@@ -68,7 +68,7 @@ private:
     
     //Returns the label that "should" be printed,
     //according to the equation given by spec.
-    double get_axis_label(int coord, int origin_mod);
+    double get_axis_label(int coord, double origin_mod);
 };
 
 #endif
