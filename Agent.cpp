@@ -47,8 +47,10 @@ void Agent::move_to(Point destination_)
 //Stops moving and announces they've stopped moving
 void Agent::stop()
 {
-    cout << get_name() << ": I'm stopped" << endl;
-    stop_moving();
+    if(is_currently_moving())  {
+        cout << get_name() << ": I'm stopped" << endl;
+        stop_moving();
+    }
 }
 //Decrements the health lost by the attack by calling lose_health
 void Agent::take_hit(int attack_strength, Agent *attacker_ptr)

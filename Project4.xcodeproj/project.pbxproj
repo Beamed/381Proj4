@@ -45,7 +45,6 @@
 		C1F119571A000B57008BBDD8 /* Agent_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent_factory.h; sourceTree = SOURCE_ROOT; };
 		C1F119581A000B57008BBDD8 /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Geometry.cpp; sourceTree = SOURCE_ROOT; };
 		C1F119591A000B57008BBDD8 /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = SOURCE_ROOT; };
-		C1F1195A1A000B57008BBDD8 /* Makefile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.txt; sourceTree = SOURCE_ROOT; };
 		C1F1195B1A000B57008BBDD8 /* Moving_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Moving_object.cpp; sourceTree = SOURCE_ROOT; };
 		C1F1195C1A000B57008BBDD8 /* Moving_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moving_object.h; sourceTree = SOURCE_ROOT; };
 		C1F1195D1A000B57008BBDD8 /* p4_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = p4_main.cpp; sourceTree = SOURCE_ROOT; };
@@ -116,7 +115,6 @@
 				C1F119591A000B57008BBDD8 /* Geometry.h */,
 				C1F1195B1A000B57008BBDD8 /* Moving_object.cpp */,
 				C1F1195C1A000B57008BBDD8 /* Moving_object.h */,
-				C1F1195A1A000B57008BBDD8 /* Makefile.txt */,
 				C1F119611A000B57008BBDD8 /* Model.cpp */,
 				C1F119621A000B57008BBDD8 /* Model.h */,
 				C1F1195D1A000B57008BBDD8 /* p4_main.cpp */,
