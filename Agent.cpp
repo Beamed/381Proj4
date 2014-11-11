@@ -98,7 +98,7 @@ void Agent::update_Movement()
     if(update_location()) {
         cout << get_name() << ": I'm there!" << endl;
     }
-    else {
+    else if(is_currently_moving()) {
         cout << get_name() << ": step..." << endl;
     }
     g_Model_ptr->notify_location(get_name(), get_current_location());
