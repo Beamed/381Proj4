@@ -28,6 +28,7 @@ const string empty_tile_c = ". ";
 const string multiple_objs_in_tile_c = "* ";
 const int num_chars_per_tile_c = 2;
 const int axis_print_frequency_c = 3;
+const int axis_precision_c = 0;
 
 
 //Constructs the View with the default values according to spec.
@@ -84,7 +85,7 @@ void View::draw()
         //and account for our y being off by one. 
         if(axis_count % axis_print_frequency_c == 0) {
             auto old_settings = cout.precision();//save old settings
-            cout << std::fixed << std::setprecision(0);
+            cout << std::fixed << std::setprecision(axis_precision_c);
             //+1 to offset our y being "off by one":
             cout << setw(4) << get_axis_label(size - y - 1, origin.y) << " ";
             //why size - y - 1? since we're printing in the opposite order,
@@ -106,7 +107,7 @@ void View::draw()
     for(int x = 0; x < size; x++) {
         if(x%axis_print_frequency_c == 0) {
             auto old_settings = cout.precision();
-            cout << std::fixed << std::setprecision(0);
+            cout << std::fixed << std::setprecision(axis_precision_c);
             cout << "  " << setw(4) << get_axis_label(x, origin.x);
             cout.precision(old_settings);
         }

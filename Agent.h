@@ -72,7 +72,7 @@ protected:
 private:
     
     int health;
-    int speed;
+    double speed;
     
     
     enum class Agent_state_e {

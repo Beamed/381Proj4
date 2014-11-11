@@ -2,13 +2,16 @@
 #include "Model.h"
 #include "Utility.h"
 #include <iostream>
+#include <iomanip>
 
 using std::cout;
 using std::endl;
 using std::string;
+using std::ios;
 
 const int default_health_c = 5;
-const int default_speed_c = 5;
+const double default_speed_c = 5.;
+const int default_precision_c = 2;
 
 //Constructs the Agent by calling agent and moving_object,
 //and then setting the default values for its private variables
@@ -109,8 +112,11 @@ void Agent::describe() const
     cout << get_name() << " at " << get_current_location() << endl;
     cout << "   Health is " << health << endl;
     if(is_moving()) {
+        auto old_settings = cout.precision();
+        cout << std::fixed << std::setprecision(default_precision_c);
         cout << "   Moving at speed " << speed << " to " <<
             get_current_destination() << endl;
+        cout.precision(old_settings);//save and restore old settings
     }
     else {
         cout << "   Stopped" << endl;
