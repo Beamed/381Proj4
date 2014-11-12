@@ -95,6 +95,8 @@ private:
     
     //inserts an agent into the relevant containers
     void insert_agent(Agent* agent);
+    //removes agent from all containers and deletes them.
+    void remove_agent(Agent* agent);
 
 	// disallow copy/move construction or assignment
 	Model(const Model&) = delete;

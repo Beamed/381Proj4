@@ -28,6 +28,7 @@ const string exit_cmd_c = "quit";
 const string error_reading_double_c = "Expected a double!";
 const string error_reading_int_c = "Expected an integer!";
 const int min_str_size_c = 2;
+const string bad_object_name_error_c = "Invalid name for new object!";
 
 //skips input until the first new_line character
 void skip_Input_Line();
@@ -117,6 +118,7 @@ void Controller::run()
         }
         catch(...) {
             cout << "Unknown exception caught!" << endl;
+            skip_Input_Line();
         }
     }
 }
@@ -173,11 +175,6 @@ Controller::New_object Controller::create_object() {
     string new_name = read_new_name();
     string type;
     cin >> type;
-    double x, y;
-    cin >> x >> y;
-    if(!cin) {
-        throw Error{error_reading_double_c};
-    }
     return New_object{new_name, type};
 }
 
@@ -188,13 +185,16 @@ string read_new_name()
     string new_name;
     cin >> new_name;
     if(new_name.length() < min_str_size_c) {
-        throw Error{"Invalid name for new object!"};
+        throw Error{bad_object_name_error_c};
     }
     if(any_of(new_name.begin(), new_name.end(), [](const char& c) {
         return !isalnum(c);
     })) {//if any character is not alphanumeric, throw error:
-        throw Error{"Invalid name for new object!"};
-    }//else we're good:
+        throw Error{bad_object_name_error_c};
+    }
+    if(g_Model_ptr->is_name_in_use(new_name)) {
+        throw Error{bad_object_name_error_c};
+    }
     return new_name;
 }
 
