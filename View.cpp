@@ -80,26 +80,20 @@ void View::draw()
     }
     //now that we have built our vector, we are safe to output:
     for(int y = 0; y < size; y++) {
-        int axis_count = size - y - 1;
+        int axis_val = size - y - 1;
         //since we're printing in opposite order, invert index(size - y)
         //and account for our y being off by one. 
-        if(axis_count % axis_print_frequency_c == 0) {
+        if(axis_val % axis_print_frequency_c == 0) {
             auto old_settings = cout.precision();//save old settings
             cout << std::fixed << std::setprecision(axis_precision_c);
             //+1 to offset our y being "off by one":
-            cout << setw(4) << get_axis_label(size - y - 1, origin.y) << " ";
-            //why size - y - 1? since we're printing in the opposite order,
-            //we need to "invert" the index - and account for starting from 0,
-            //not 1.
+            cout << setw(4) << get_axis_label(axis_val, origin.y) << " ";
             cout.precision(old_settings);//restore old settings
         }
         else {
             cout << "     ";
         }
-        const vector<string>& line = map[size - y - 1];
-        //why size-y? remember: we're printing the opposite of the internal
-        //representation, so we need to account for that. -1 to account for
-        //y being "off by one" from the real value.
+        const vector<string>& line = map[axis_val];
         ostream_iterator<string> out_iter(cout);
         copy(line.begin(), line.end(), out_iter);
         cout << endl;//new line after every individual line.
