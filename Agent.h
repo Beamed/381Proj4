@@ -14,7 +14,7 @@
 class Structure;
 
 
-class Agent: public Sim_object, Moving_object {
+class Agent: public Sim_object, public Moving_object {
 public:
     
     virtual ~Agent() override;
