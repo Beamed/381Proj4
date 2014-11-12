@@ -36,7 +36,7 @@ void Peasant::update()
     }
     if(working_state == Peasant_state_e::INBOUND &&
        !is_moving() &&
-       food_src->get_location() == get_current_location()) {
+       food_src->get_location() == get_location()) {
         working_state = Peasant_state_e::COLLECTING;
         return;
     }
@@ -55,7 +55,7 @@ void Peasant::update()
     }
     if(working_state == Peasant_state_e::OUTBOUND &&
        !is_moving() &&
-       food_dest->get_location() == get_current_location()) {
+       food_dest->get_location() == get_location()) {
         working_state = Peasant_state_e::DEPOSITING;
         return;
     }
@@ -111,7 +111,7 @@ void Peasant::start_working(Structure *source_, Structure *destination_)
     food_src = source_;
     food_dest = destination_;
     if(food == default_food_c){ //if we are not carrying any food
-        if(get_current_location() == food_src->get_location()) {
+        if(get_location() == food_src->get_location()) {
             working_state = Peasant_state_e::COLLECTING;
             return;
         }
@@ -120,7 +120,7 @@ void Peasant::start_working(Structure *source_, Structure *destination_)
         return;
     }
     //else if we have food:
-    if(get_current_location() == food_dest->get_location()) {
+    if(get_location() == food_dest->get_location()) {
         working_state = Peasant_state_e::DEPOSITING;
     }
     else {
