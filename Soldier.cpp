@@ -49,8 +49,8 @@ void Soldier::attack_target(Agent *target_ptr)
 //False otherwise
 bool Soldier::in_range(Agent *target_ptr) const
 {
-    return cartesian_distance(get_current_location(),
-                    target_ptr->get_current_location()) <= range;
+    return cartesian_distance(get_location(),
+                    target_ptr->get_location()) <= range;
 }
 //Updates the soldier by analyzing current target; if no target,
 //does nothing. If target, moves to strike if valid target.
