@@ -24,11 +24,11 @@ using std::endl;
 using std::any_of;
 using namespace std::placeholders;
 
-const string exit_cmd_c = "quit";
-const string error_reading_double_c = "Expected a double!";
-const string error_reading_int_c = "Expected an integer!";
+const char* const exit_cmd_c = "quit";
+const char* const error_reading_double_c = "Expected a double!";
+const char* const error_reading_int_c = "Expected an integer!";
 const int min_str_size_c = 2;
-const string bad_object_name_error_c = "Invalid name for new object!";
+const char* const bad_object_name_error_c = "Invalid name for new object!";
 
 //skips input until the first new_line character
 void skip_Input_Line();

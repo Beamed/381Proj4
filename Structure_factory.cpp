@@ -6,8 +6,8 @@
 
 using std::string;
 
-const string farm_name_c = "Farm";
-const string town_hall_name_c = "Town_Hall";
+const char* const farm_name_c = "Farm";
+const char* const town_hall_name_c = "Town_Hall";
 
 //Creates a structure as requested by comparing the type to the currently
 //known type names, and calling the relevant constructor.

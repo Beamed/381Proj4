@@ -6,8 +6,8 @@
 
 using std::string;
 
-const string soldier_name_c = "Soldier";
-const string peasant_name_c = "Peasant";
+const char* const soldier_name_c = "Soldier";
+const char* const peasant_name_c = "Peasant";
 
 
 //Creates and returns a pointer to the specified Agent type
