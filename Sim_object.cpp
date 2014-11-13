@@ -1,6 +1,6 @@
 #include "Sim_object.h"
 #include <string>
-#include <iostream>
+#include <iostream>//cout, endl
 using std::string;
 using std::cout;
 using std::endl;

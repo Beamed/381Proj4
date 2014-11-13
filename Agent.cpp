@@ -1,8 +1,9 @@
 #include "Agent.h"
 #include "Model.h"
 #include "Utility.h"
-#include <iostream>
-#include <iomanip>
+#include <iostream>//cout, endl
+#include <iomanip>//changing output settings(precision)
+#include <cassert>//assert
 
 using std::cout;
 using std::endl;
@@ -135,7 +136,10 @@ void Agent::describe() const
             cout << "   Is disappearing" << endl;
             break;
         default:
-            //do nothing
+            assert(state == Agent_state_e::ALIVE
+                   || state == Agent_state_e::DYING
+                   || state == Agent_state_e::DEAD
+                   || state == Agent_state_e::DISAPPEARING);
             break;
     }
 }

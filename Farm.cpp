@@ -1,5 +1,5 @@
 #include "Farm.h"
-#include <iostream>
+#include <iostream>//cout, endl
 
 const double default_starting_food_c = 50.0;
 const double default_production_c = 2.0;

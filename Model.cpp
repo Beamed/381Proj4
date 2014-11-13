@@ -7,9 +7,9 @@
 #include "Agent.h"
 #include "Structure.h"
 #include "Utility.h"
-#include <functional>
-#include <algorithm>
-#include <utility>
+#include <functional>//bind
+#include <algorithm>//for_each
+#include <utility>//make_pair
 
 using std::string;
 using std::for_each;

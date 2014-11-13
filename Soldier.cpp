@@ -1,7 +1,7 @@
 #include "Soldier.h"
 #include "Utility.h"
 #include "Geometry.h"
-#include <iostream>
+#include <iostream>//cout, endl
 
 const int default_strength_c = 2;
 const double default_range_c = 2.0;

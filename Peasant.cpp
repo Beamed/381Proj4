@@ -1,8 +1,8 @@
 #include "Peasant.h"
 #include "Structure.h"
 #include "Utility.h"
-#include <iostream>
-#include <cassert>
+#include <iostream>//cout, endl
+#include <cassert>//assert
 
 const double default_food_c = 0.0;
 const double max_food_c = 35.0;
