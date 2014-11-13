@@ -41,7 +41,8 @@ double Town_Hall::withdraw(double amount_to_obtain)
     food -= amount_to_obtain;
     return amount_to_obtain;
 }
-
+//Outputs information about being a town hall, as well as the food contained.
+//Otherwise delegates back to Structure::describe()
 void Town_Hall::describe() const
 {
     cout << "Town_Hall ";

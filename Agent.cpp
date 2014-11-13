@@ -147,10 +147,10 @@ void Agent::broadcast_current_state()
 //Throws error that it can't work
 void Agent::start_working(Structure*, Structure*)
 {
-    throw Error(get_name() + ": Sorry, I can't work!");
+    throw Error{get_name() + ": Sorry, I can't work!"};
 }
 //Throws error that it can't attack
 void Agent::start_attacking(Agent*)
 {
-    throw Error(get_name() +  + ": Sorry, I can't attack!");
+    throw Error{get_name() +  + ": Sorry, I can't attack!"};
 }

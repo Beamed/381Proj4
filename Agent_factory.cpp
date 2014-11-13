@@ -9,6 +9,10 @@ using std::string;
 const string soldier_name_c = "Soldier";
 const string peasant_name_c = "Peasant";
 
+
+//Creates and returns a pointer to the specified Agent type
+//Throws an error if the type is unrecognized.
+//Is not responsible for the dynamically allocated memory. 
 Agent* create_agent(const string& name, const string& type,
                     Point location)
 {

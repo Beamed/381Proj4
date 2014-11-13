@@ -4,7 +4,7 @@
 #define STRUCTURE_H
 
 #include <string>
-#include "Geometry.h"
+#include "Geometry.h"//needed for internal Point
 #include "Sim_object.h"
 
 class Structure : public Sim_object {

@@ -37,14 +37,14 @@ Model::Model() : time(default_starting_time_c)
     insert_agent(create_agent("Zug", "Soldier", Point(20., 30.)));
     insert_agent(create_agent("Bug", "Soldier", Point(15., 20.)));
 }
-//Inserts structure and has it broadcast
+//Inserts structure and has it broadcast its state
 void Model::add_structure(Structure * structure)
 {
     insert_structure(structure);
     structure->broadcast_current_state();
 }
 
-
+//Inserts the agent into containers and has it broadcast its state
 void Model::add_agent(Agent * agent)
 {
     insert_agent(agent);
@@ -70,7 +70,7 @@ Structure* Model::get_structure_ptr(const string& name) const
 {
     auto struct_ptr = structures.find(name);
     if(struct_ptr == structures.end()) {
-        throw Error("Structure not found!");
+        throw Error{"Structure not found!"};
     }
     return struct_ptr->second;
 }
@@ -102,7 +102,7 @@ Agent* Model::get_agent_ptr(const string &name) const
 {
     auto agent_iter = agents.find(name);
     if(agent_iter == agents.end()) {
-        throw Error("Agent not found!");
+        throw Error{"Agent not found!"};
     }
     return agent_iter->second;
 }

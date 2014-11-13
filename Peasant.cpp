@@ -106,7 +106,7 @@ void Peasant::start_working(Structure *source_, Structure *destination_)
     Agent::stop();
     end_work();
     if(source_ == destination_) {
-        throw Error(get_name() + ": I can't move food to and from the same place!");
+        throw Error{get_name() + ": I can't move food to and from the same place!"};
     }
     food_src = source_;
     food_dest = destination_;

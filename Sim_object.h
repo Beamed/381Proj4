@@ -6,7 +6,7 @@ the object's position and other information. */
 
 #include <string>
 
-class Point;//incomplete fwd declaration
+struct Point;//incomplete fwd declaration
 
 class Sim_object {
 public:

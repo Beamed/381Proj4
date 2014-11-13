@@ -2,9 +2,9 @@
 #include "Model.h"
 #include "View.h"
 #include "Agent_factory.h"
-#include "Agent.h"
 #include "Structure_factory.h"
 #include "Utility.h"
+#include "Agent.h"
 #include <iostream>
 #include <string>
 #include <map>//for map
@@ -141,7 +141,7 @@ void Controller::zoom(View* view)
     double zoom_val;
     cin >> zoom_val;
     if(!cin) {
-        throw Error(error_reading_double_c);
+        throw Error{error_reading_double_c};
     }
     view->set_scale(zoom_val);
 }

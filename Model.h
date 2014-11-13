@@ -27,7 +27,7 @@ class Agent;
 class Structure;
 class Sim_object;//forward declare so we don't include into header
 class View;
-class Point;
+struct Point;
 
 extern Model* g_Model_ptr;//the -one- Model we need.
  

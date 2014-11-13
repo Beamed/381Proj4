@@ -56,12 +56,12 @@ void View::draw()
     vector<vector<string>> map(size, vector<string>(size, empty_tile_c));
     //create a 30x30 vector of strings initialized to the default empty tile
     bool first_outside = true;//so we know if we print ", " before an
-    //object outside the map or not
-    for(const auto &object: objects) {
+                             //object outside the map or not
+    for(const auto &object_pair: objects) {
         int x, y;//x and y location of object
-        if(get_subscripts(x, y, object.second)) {
+        if(get_subscripts(x, y, object_pair.second)) {
             if(map[y][x] == empty_tile_c)
-                map[y][x] = object.first.substr(0, num_chars_per_tile_c);
+                map[y][x] = object_pair.first.substr(0, num_chars_per_tile_c);
             //0 as 0 is the start of the string. 
             else
                 map[y][x] = multiple_objs_in_tile_c;
@@ -70,7 +70,7 @@ void View::draw()
             if(!first_outside) {
                 cout << ", ";
             }
-            cout << object.first;//output their name
+            cout << object_pair.first;//output their name
             first_outside = false;//none of the others will be first outside
             //if any others
         }
@@ -125,10 +125,10 @@ void View::clear()
 void View::set_size(int size_)
 {
     if(size_ > max_map_size_c) {
-        throw Error("New map size is too big!");
+        throw Error{"New map size is too big!"};
     }
     if(size_ < min_map_size_c) {
-        throw Error("New map size is too small!");
+        throw Error{"New map size is too small!"};
     }
     size = size_;
 }
@@ -138,7 +138,7 @@ void View::set_size(int size_)
 void View::set_scale(double scale_)
 {
     if(scale_ <= lower_scale_bound_c) {
-        throw Error("New map scale must be positive!");
+        throw Error{"New map scale must be positive!"};
     }
     scale = scale_;
 }
@@ -151,7 +151,7 @@ void View::set_defaults()
 {
     size = default_size_c;
     scale = default_scale_c;
-    origin = Point(default_origin_x_c, default_origin_y_c);
+    origin = Point{default_origin_x_c, default_origin_y_c};
 }
 
 // Calculate the cell subscripts corresponding to the supplied location parameter, 

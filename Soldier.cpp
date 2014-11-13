@@ -28,13 +28,13 @@ Soldier::~Soldier()
 void Soldier::start_attacking(Agent *target_ptr)
 {
     if(target_ptr == this) {
-        throw Error(get_name() + + ": I cannot attack myself!");
+        throw Error{get_name() + + ": I cannot attack myself!"};
     }
     if(!target_ptr->is_alive()) {
-        throw Error(get_name() + ": Target is not alive!");
+        throw Error{get_name() + ": Target is not alive!"};
     }
     if(!in_range(target_ptr)) {
-        throw Error(get_name() + ": Target is out of range!");
+        throw Error{get_name() + ": Target is out of range!"};
     }
     attack_target(target_ptr);
 }

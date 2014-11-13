@@ -7,7 +7,8 @@ but does no updating.
 
 #include <string>
 #include "Structure.h"
-#include "Geometry.h"
+
+struct Point;//forward declare
 
 class Town_Hall : public Structure{
 
